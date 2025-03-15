@@ -1,0 +1,5 @@
+#H2 STARTUP
+ifconfig eth0 up
+
+# Assegna un IP a H2 (nella rete del fronthaul)
+ip addr add 20.0.1.11/24 dev eth0

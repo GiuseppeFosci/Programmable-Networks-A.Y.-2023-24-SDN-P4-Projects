@@ -1,0 +1,8 @@
+#H1 STARTUP
+ifconfig eth0 up
+ifconfig eth1 up
+ifconfig eth2 up
+ifconfig eth3 up
+
+# Assegna un IP a H1 (nella rete del fronthaul)
+ip addr add 20.0.1.10/24 dev eth0
