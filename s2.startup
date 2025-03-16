@@ -1,11 +1,29 @@
-ifconfig eth0 up
-ip addr add 20.0.1.2/24 dev eth0
+# S2 STARTUP
 
+ifconfig eth0 up   
+ifconfig eth1 up   
+ifconfig eth2 up   
+ifconfig eth3 up   
+
+# Assegna un IP di gestione all'interfaccia che comunica con il controller
+ip addr add 20.0.1.2/24 dev eth3  
+
+# Avvia Open vSwitch (OVS)
 service openvswitch-switch start
-sleep 2
+sleep 1
+/usr/share/openvswitch/scripts/ovs-ctl --system-id=random start
 
-ovs-vsctl add-br br0
-ovs-vsctl add-port br0 eth0
-ovs-vsctl set bridge br0 protocols=OpenFlow10
-ovs-vsctl set-controller br0 tcp:20.0.1.4:6633
-ovs-vsctl show
+# Crea il bridge OpenFlow e aggiungi le porte
+ovs-vsctl add-br s1
+ovs-vsctl add-port s1 eth0
+ovs-vsctl add-port s1 eth1
+ovs-vsctl add-port s1 eth2
+
+# Attiva il bridge
+ip link set s1 up
+
+# Configura OpenFlow e collega il controller SDN
+ovs-vsctl set bridge s1 protocols=OpenFlow10
+ovs-vsctl set-controller s1 tcp:20.0.1.5:6633  
+
+
