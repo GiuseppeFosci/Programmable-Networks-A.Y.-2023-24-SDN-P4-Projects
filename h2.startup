@@ -3,3 +3,4 @@ ifconfig eth0 up
 
 # Assegna un IP a H2 (nella rete del fronthaul)
 ip addr add 20.0.1.11/24 dev eth0
+ip link set eth0 address 02:42:ac:11:00:02

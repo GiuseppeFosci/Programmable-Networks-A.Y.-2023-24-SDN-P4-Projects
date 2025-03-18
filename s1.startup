@@ -21,6 +21,8 @@ ovs-vsctl add-port s1 eth1
 # Attiva il bridge
 ip link set s1 up
 
+ovs-vsctl set bridge s1 other-config:datapath-id=0000000000000001
+
 # Configura OpenFlow e collega il controller SDN
 ovs-vsctl set bridge s1 protocols=OpenFlow10
 ovs-vsctl set-controller s1 tcp:20.0.1.5:6633  
