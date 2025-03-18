@@ -1,0 +1,13 @@
+#ap3 STARTUP
+# Attiva le interfacce
+ifconfig eth0 up  # Verso H2
+ifconfig eth1 up  # Verso S4
+
+# Crea un bridge Linux
+brctl addbr br-ap3
+brctl addif br-ap3 eth0
+brctl addif br-ap3 eth1
+
+# Attiva il bridge
+ip link set br-ap3 up
+
