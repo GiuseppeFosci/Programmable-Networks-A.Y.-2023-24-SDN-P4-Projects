@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Attiva le interfacce di rete
 ifconfig eth0 up   # Verso Internet
 ifconfig eth1 up   # Verso S2 (SDN)
