@@ -1,4 +1,0 @@
-ip link set eth0 address 10:00:00:00:00:02  
-ip addr add 10.0.1.102/24 dev eth0          
-
-arp -s 10.0.1.101 10:00:00:00:00:01

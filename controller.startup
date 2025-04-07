@@ -1,6 +1,0 @@
-### controller.startup ###
-ip addr add 20.0.1.5/24 dev eth0
-chmod +x /home/pox/pox.py
-sleep 1
-
-
