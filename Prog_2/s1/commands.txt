@@ -1,0 +1,4 @@
+table_add MyIngress.CMH_forwarding_table ipv4_forward 10.0.1.102/32 => 2
+table_add MyIngress.CMH_forwarding_table ipv4_forward 10.0.1.101/32 => 1 
+
+

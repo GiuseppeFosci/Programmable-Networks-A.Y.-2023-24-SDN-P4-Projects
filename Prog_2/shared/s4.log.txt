@@ -1,0 +1,458 @@
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_set_node_config': MyIngress.set_node_config - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_allowed': MyIngress.vote_allowed - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_drop': MyIngress.vote_drop - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_abstain': MyIngress.vote_abstain - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_l2_forward': MyIngress.l2_forward - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_allowed_0': MyIngress.vote_allowed - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_drop_0': MyIngress.vote_drop - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_abstain_0': MyIngress.vote_abstain - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'MyIngress.CMH_forwarding_table': NoAction - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_allowed_1': MyIngress.vote_allowed - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_drop_1': MyIngress.vote_drop - 
+[13:15:43.760] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_vote_abstain_1': MyIngress.vote_abstain - 
+[13:15:43.761] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_ipv4l210': ipv4l210 - 
+[13:15:43.761] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_drop': MyEgress.drop - 
+[13:15:43.761] [bmv2] [D] [thread 33] Set default default entry for table 'tbl_ipv4l219': ipv4l219 - 
+[13:15:43.761] [bmv2] [D] [thread 33] Adding interface eth0 as port 1
+[13:15:43.857] [bmv2] [D] [thread 33] Adding interface eth1 as port 2
+[13:15:43.900] [bmv2] [I] [thread 33] Starting Thrift server on port 9090
+[13:15:43.901] [bmv2] [I] [thread 33] Thrift server was started
+[13:15:44.095] [bmv2] [T] [thread 48] bm_get_config
+[13:15:44.385] [bmv2] [T] [thread 56] bm_get_config
+[13:15:44.476] [bmv2] [T] [thread 56] bm_table_add_entry
+[13:15:44.476] [bmv2] [D] [thread 56] Entry 0 added to table 'MyIngress.CMH_forwarding_table'
+[13:15:44.477] [bmv2] [D] [thread 56] Dumping entry 0
+Match key:
+* hdr.ipv4.dstAddr    : LPM       0a000166/32
+Action entry: MyIngress.ipv4_forward - 2,
+
+[13:15:44.489] [bmv2] [T] [thread 56] bm_table_add_entry
+[13:15:44.489] [bmv2] [D] [thread 56] Entry 1 added to table 'MyIngress.CMH_forwarding_table'
+[13:15:44.489] [bmv2] [D] [thread 56] Dumping entry 1
+Match key:
+* hdr.ipv4.dstAddr    : LPM       0a000165/32
+Action entry: MyIngress.ipv4_forward - 1,
+
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Processing packet received on port 1
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser 'parser': start
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser 'parser' entering state 'start'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Extracting header 'ethernet'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser state 'start': key is 0800
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] Bytes parsed: 14
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Extracting header 'ipv4'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser state 'parse_ipv4': key is 06
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] Bytes parsed: 34
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Extracting header 'tcp'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Extracting header 'consensus'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] Bytes parsed: 57
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Parser 'parser': end
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Pipeline 'ingress': start
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] Applying table 'tbl_set_node_config'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Looking up key:
+
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Table 'tbl_set_node_config': miss
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Action entry is MyIngress.set_node_config - 
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] Action MyIngress.set_node_config
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(7) Primitive 1; ...
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(12) Primitive 1; ...
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[13:18:22.386] [bmv2] [I] [thread 41] Nodo configurato con ruolo: 1
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(154) Condition "meta.switch_role == ROLE_LAYER2" (node_3) is true
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(156) Condition "rnd < 2" (node_4) is true
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] Applying table 'tbl_vote_allowed'
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Looking up key:
+
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Table 'tbl_vote_allowed': miss
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Action entry is MyIngress.vote_allowed - 
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] Action MyIngress.vote_allowed
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(108) Primitive hdr.consensus.allowed_count = hdr.consensus.allowed_count + 1
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {}\", {meta.switch_role, hdr.ipv4.dstAddr});
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {}\", {meta.switch_role, hdr.ipv4.dstAddr});
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {}\", {meta.switch_role, hdr.ipv4.dstAddr});
+[13:18:22.386] [bmv2] [I] [thread 41] Nodo 1: Voto CONSENTITO per pacchetto con destinazione: 167772518
+[13:18:22.386] [bmv2] [T] [thread 41] [0.0] [cxt 0] /ipv4.p4(163) Condition "meta.is_final == 0" (node_9) is false
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Pipeline 'ingress': end
+[13:18:22.386] [bmv2] [D] [thread 41] [0.0] [cxt 0] Egress port is 0
+[13:18:22.386] [bmv2] [D] [thread 42] [0.0] [cxt 0] Pipeline 'egress': start
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] /ipv4.p4(204) Condition "meta.is_final == 1" (node_28) is true
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] Applying table 'tbl_ipv4l210'
+[13:18:22.386] [bmv2] [D] [thread 42] [0.0] [cxt 0] Looking up key:
+
+[13:18:22.386] [bmv2] [D] [thread 42] [0.0] [cxt 0] Table 'tbl_ipv4l210': miss
+[13:18:22.386] [bmv2] [D] [thread 42] [0.0] [cxt 0] Action entry is ipv4l210 - 
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] Action ipv4l210
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] /ipv4.p4(211) Primitive hdr.consensus.allowed_count
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] /ipv4.p4(212) Primitive hdr.consensus.drop_count
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] /ipv4.p4(213) Primitive hdr.consensus.abstained_count
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] /ipv4.p4(210) Primitive             log_msg(\"Egress: Consenso finale (consentito={}, rifiutato={}, astenuto={})\", {
+[13:18:22.386] [bmv2] [I] [thread 42] Egress: Consenso finale (consentito=4, rifiutato=0, astenuto=0)
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] /ipv4.p4(216) Condition "allowed * 2 <= total" (node_30) is false
+[13:18:22.386] [bmv2] [T] [thread 42] [0.0] [cxt 0] Applying table 'tbl_ipv4l219'
+[13:54:04.195] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_set_node_config': MyIngress.set_node_config - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_allowed': MyIngress.vote_allowed - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_drop': MyIngress.vote_drop - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_abstain': MyIngress.vote_abstain - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_l2_forward': MyIngress.l2_forward - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_allowed_0': MyIngress.vote_allowed - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_drop_0': MyIngress.vote_drop - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_abstain_0': MyIngress.vote_abstain - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'MyIngress.CMH_forwarding_table': NoAction - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_allowed_1': MyIngress.vote_allowed - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_drop_1': MyIngress.vote_drop - 
+[13:54:04.196] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_vote_abstain_1': MyIngress.vote_abstain - 
+[13:54:04.197] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_ipv4l219': ipv4l219 - 
+[13:54:04.197] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_drop': MyEgress.drop - 
+[13:54:04.197] [bmv2] [D] [thread 35] Set default default entry for table 'tbl_ipv4l228': ipv4l228 - 
+[13:54:04.199] [bmv2] [D] [thread 35] Adding interface eth0 as port 1
+[13:54:04.278] [bmv2] [D] [thread 35] Adding interface eth1 as port 2
+[13:54:04.392] [bmv2] [I] [thread 35] Starting Thrift server on port 9090
+[13:54:04.392] [bmv2] [I] [thread 35] Thrift server was started
+[13:54:04.425] [bmv2] [T] [thread 50] bm_get_config
+[13:54:04.605] [bmv2] [T] [thread 53] bm_get_config
+[13:54:04.611] [bmv2] [T] [thread 53] bm_table_add_entry
+[13:54:04.611] [bmv2] [D] [thread 53] Entry 0 added to table 'MyIngress.CMH_forwarding_table'
+[13:54:04.611] [bmv2] [D] [thread 53] Dumping entry 0
+Match key:
+* hdr.ipv4.dstAddr    : LPM       0a000166/32
+Action entry: MyIngress.ipv4_forward - 2,
+
+[13:54:04.626] [bmv2] [T] [thread 53] bm_table_add_entry
+[13:54:04.626] [bmv2] [D] [thread 53] Entry 1 added to table 'MyIngress.CMH_forwarding_table'
+[13:54:04.626] [bmv2] [D] [thread 53] Dumping entry 1
+Match key:
+* hdr.ipv4.dstAddr    : LPM       0a000165/32
+Action entry: MyIngress.ipv4_forward - 1,
+
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Processing packet received on port 1
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser 'parser': start
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser 'parser' entering state 'start'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Extracting header 'ethernet'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser state 'start': key is 0800
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] Bytes parsed: 14
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Extracting header 'ipv4'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser state 'parse_ipv4': key is 06
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] Bytes parsed: 34
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Extracting header 'tcp'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Extracting header 'consensus'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] Bytes parsed: 57
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Parser 'parser': end
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Pipeline 'ingress': start
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] Applying table 'tbl_set_node_config'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Looking up key:
+
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Table 'tbl_set_node_config': miss
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Action entry is MyIngress.set_node_config - 
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] Action MyIngress.set_node_config
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(7) Primitive 1; ...
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(12) Primitive 1; ...
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[13:54:21.489] [bmv2] [I] [thread 43] Nodo configurato con ruolo: 1
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(154) Condition "meta.switch_role == ROLE_LAYER2" (node_3) is true
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(159) Condition "rnd < 2" (node_4) is true
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] Applying table 'tbl_vote_allowed'
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Looking up key:
+
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Table 'tbl_vote_allowed': miss
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Action entry is MyIngress.vote_allowed - 
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] Action MyIngress.vote_allowed
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(108) Primitive hdr.consensus.allowed_count = hdr.consensus.allowed_count + 1
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[13:54:21.489] [bmv2] [I] [thread 43] Nodo 1: Voto CONSENTITO per pacchetto con destinazione: 167772518 (timestamp-based)
+[13:54:21.489] [bmv2] [T] [thread 43] [0.0] [cxt 0] /ipv4.p4(166) Condition "meta.is_final == 0" (node_9) is false
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Pipeline 'ingress': end
+[13:54:21.489] [bmv2] [D] [thread 43] [0.0] [cxt 0] Egress port is 0
+[13:54:21.489] [bmv2] [D] [thread 44] [0.0] [cxt 0] Pipeline 'egress': start
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(213) Condition "meta.is_final == 1" (node_28) is true
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] Applying table 'tbl_ipv4l219'
+[13:54:21.489] [bmv2] [D] [thread 44] [0.0] [cxt 0] Looking up key:
+
+[13:54:21.489] [bmv2] [D] [thread 44] [0.0] [cxt 0] Table 'tbl_ipv4l219': miss
+[13:54:21.489] [bmv2] [D] [thread 44] [0.0] [cxt 0] Action entry is ipv4l219 - 
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] Action ipv4l219
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(220) Primitive hdr.consensus.allowed_count
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(221) Primitive hdr.consensus.drop_count
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(222) Primitive hdr.consensus.abstained_count
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(219) Primitive             log_msg(\"Egress: Consenso finale (consentito={}, rifiutato={}, astenuto={})\", {
+[13:54:21.489] [bmv2] [I] [thread 44] Egress: Consenso finale (consentito=2, rifiutato=0, astenuto=2)
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(225) Condition "allowed * 2 <= total" (node_30) is true
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] Applying table 'tbl_drop'
+[13:54:21.489] [bmv2] [D] [thread 44] [0.0] [cxt 0] Looking up key:
+
+[13:54:21.489] [bmv2] [D] [thread 44] [0.0] [cxt 0] Table 'tbl_drop': miss
+[13:54:21.489] [bmv2] [D] [thread 44] [0.0] [cxt 0] Action entry is MyEgress.drop - 
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] Action MyEgress.drop
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(208) Primitive mark_to_drop(standard_metadata)
+[13:54:21.489] [bmv2] [T] [thread 44] [0.0] [cxt 0] /ipv4.p4(209) Primitive         log_msg(\"Egress: Pacchetto RIFIUTATO dal consenso\", {});
+[13:54:21.489] [bmv2] [I] [thread 44] Egress: Pacchetto RIFIUTATO dal consenso
+[13:54:21.490] [bmv2] [D] [thread 44] [0.0] [cxt 0] Pipeline 'egress': end
+[13:54:21.490] [bmv2] [D] [thread 44] [0.0] [cxt 0] Dropping packet at the end of egress
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Processing packet received on port 1
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser 'parser': start
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser 'parser' entering state 'start'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Extracting header 'ethernet'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser state 'start': key is 0800
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] Bytes parsed: 14
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Extracting header 'ipv4'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser state 'parse_ipv4': key is 06
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] Bytes parsed: 34
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Extracting header 'tcp'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Extracting header 'consensus'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] Bytes parsed: 57
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Parser 'parser': end
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Pipeline 'ingress': start
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] Applying table 'tbl_set_node_config'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Looking up key:
+
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Table 'tbl_set_node_config': miss
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Action entry is MyIngress.set_node_config - 
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] Action MyIngress.set_node_config
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(7) Primitive 1; ...
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(12) Primitive 1; ...
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:06:40.546] [bmv2] [I] [thread 43] Nodo configurato con ruolo: 1
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(154) Condition "meta.switch_role == ROLE_LAYER2" (node_3) is true
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(159) Condition "rnd < 2" (node_4) is true
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] Applying table 'tbl_vote_allowed'
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Looking up key:
+
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Table 'tbl_vote_allowed': miss
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Action entry is MyIngress.vote_allowed - 
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] Action MyIngress.vote_allowed
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(108) Primitive hdr.consensus.allowed_count = hdr.consensus.allowed_count + 1
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:06:40.546] [bmv2] [I] [thread 43] Nodo 1: Voto CONSENTITO per pacchetto con destinazione: 167772518 (timestamp-based)
+[14:06:40.546] [bmv2] [T] [thread 43] [1.0] [cxt 0] /ipv4.p4(166) Condition "meta.is_final == 0" (node_9) is false
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Pipeline 'ingress': end
+[14:06:40.546] [bmv2] [D] [thread 43] [1.0] [cxt 0] Egress port is 0
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Pipeline 'egress': start
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] /ipv4.p4(213) Condition "meta.is_final == 1" (node_28) is true
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] Applying table 'tbl_ipv4l219'
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Looking up key:
+
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Table 'tbl_ipv4l219': miss
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Action entry is ipv4l219 - 
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] Action ipv4l219
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] /ipv4.p4(220) Primitive hdr.consensus.allowed_count
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] /ipv4.p4(221) Primitive hdr.consensus.drop_count
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] /ipv4.p4(222) Primitive hdr.consensus.abstained_count
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] /ipv4.p4(219) Primitive             log_msg(\"Egress: Consenso finale (consentito={}, rifiutato={}, astenuto={})\", {
+[14:06:40.546] [bmv2] [I] [thread 44] Egress: Consenso finale (consentito=3, rifiutato=1, astenuto=0)
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] /ipv4.p4(225) Condition "allowed * 2 <= total" (node_30) is false
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] Applying table 'tbl_ipv4l228'
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Looking up key:
+
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Table 'tbl_ipv4l228': miss
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Action entry is ipv4l228 - 
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] Action ipv4l228
+[14:06:40.546] [bmv2] [T] [thread 44] [1.0] [cxt 0] /ipv4.p4(228) Primitive                 log_msg(\"Egress: Pacchetto INOLTRATO dal consenso\", {});
+[14:06:40.546] [bmv2] [I] [thread 44] Egress: Pacchetto INOLTRATO dal consenso
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Pipeline 'egress': end
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Deparser 'deparser': start
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Updating checksum 'cksum'
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Deparsing header 'ethernet'
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Deparsing header 'ipv4'
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Deparsing header 'tcp'
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Deparsing header 'consensus'
+[14:06:40.546] [bmv2] [D] [thread 44] [1.0] [cxt 0] Deparser 'deparser': end
+[14:06:40.547] [bmv2] [D] [thread 48] [1.0] [cxt 0] Transmitting packet of size 69 out of port 0
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Processing packet received on port 1
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser 'parser': start
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser 'parser' entering state 'start'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Extracting header 'ethernet'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser state 'start': key is 0800
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] Bytes parsed: 14
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Extracting header 'ipv4'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser state 'parse_ipv4': key is 06
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] Bytes parsed: 34
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Extracting header 'tcp'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Extracting header 'consensus'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] Bytes parsed: 57
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Parser 'parser': end
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Pipeline 'ingress': start
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] Applying table 'tbl_set_node_config'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Looking up key:
+
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Table 'tbl_set_node_config': miss
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Action entry is MyIngress.set_node_config - 
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] Action MyIngress.set_node_config
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(7) Primitive 1; ...
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(12) Primitive 1; ...
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:08:05.039] [bmv2] [I] [thread 43] Nodo configurato con ruolo: 1
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(154) Condition "meta.switch_role == ROLE_LAYER2" (node_3) is true
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(159) Condition "rnd < 2" (node_4) is true
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] Applying table 'tbl_vote_allowed'
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Looking up key:
+
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Table 'tbl_vote_allowed': miss
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Action entry is MyIngress.vote_allowed - 
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] Action MyIngress.vote_allowed
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(108) Primitive hdr.consensus.allowed_count = hdr.consensus.allowed_count + 1
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:08:05.039] [bmv2] [I] [thread 43] Nodo 1: Voto CONSENTITO per pacchetto con destinazione: 167772518 (timestamp-based)
+[14:08:05.039] [bmv2] [T] [thread 43] [2.0] [cxt 0] /ipv4.p4(166) Condition "meta.is_final == 0" (node_9) is false
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Pipeline 'ingress': end
+[14:08:05.039] [bmv2] [D] [thread 43] [2.0] [cxt 0] Egress port is 0
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Pipeline 'egress': start
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(213) Condition "meta.is_final == 1" (node_28) is true
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] Applying table 'tbl_ipv4l219'
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Looking up key:
+
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Table 'tbl_ipv4l219': miss
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Action entry is ipv4l219 - 
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] Action ipv4l219
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(220) Primitive hdr.consensus.allowed_count
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(221) Primitive hdr.consensus.drop_count
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(222) Primitive hdr.consensus.abstained_count
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(219) Primitive             log_msg(\"Egress: Consenso finale (consentito={}, rifiutato={}, astenuto={})\", {
+[14:08:05.039] [bmv2] [I] [thread 44] Egress: Consenso finale (consentito=1, rifiutato=3, astenuto=0)
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(225) Condition "allowed * 2 <= total" (node_30) is true
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] Applying table 'tbl_drop'
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Looking up key:
+
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Table 'tbl_drop': miss
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Action entry is MyEgress.drop - 
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] Action MyEgress.drop
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(208) Primitive mark_to_drop(standard_metadata)
+[14:08:05.039] [bmv2] [T] [thread 44] [2.0] [cxt 0] /ipv4.p4(209) Primitive         log_msg(\"Egress: Pacchetto RIFIUTATO dal consenso\", {});
+[14:08:05.039] [bmv2] [I] [thread 44] Egress: Pacchetto RIFIUTATO dal consenso
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Pipeline 'egress': end
+[14:08:05.039] [bmv2] [D] [thread 44] [2.0] [cxt 0] Dropping packet at the end of egress
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Processing packet received on port 1
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser 'parser': start
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser 'parser' entering state 'start'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Extracting header 'ethernet'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser state 'start': key is 0800
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] Bytes parsed: 14
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Extracting header 'ipv4'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser state 'parse_ipv4': key is 06
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] Bytes parsed: 34
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Extracting header 'tcp'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Extracting header 'consensus'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] Bytes parsed: 57
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Parser 'parser': end
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Pipeline 'ingress': start
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] Applying table 'tbl_set_node_config'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Looking up key:
+
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Table 'tbl_set_node_config': miss
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Action entry is MyIngress.set_node_config - 
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] Action MyIngress.set_node_config
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(7) Primitive 1; ...
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(12) Primitive 1; ...
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:09:42.560] [bmv2] [I] [thread 43] Nodo configurato con ruolo: 1
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(154) Condition "meta.switch_role == ROLE_LAYER2" (node_3) is true
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(159) Condition "rnd < 2" (node_4) is true
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] Applying table 'tbl_vote_allowed'
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Looking up key:
+
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Table 'tbl_vote_allowed': miss
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Action entry is MyIngress.vote_allowed - 
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] Action MyIngress.vote_allowed
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(108) Primitive hdr.consensus.allowed_count = hdr.consensus.allowed_count + 1
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(109) Primitive         log_msg(\"Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:09:42.560] [bmv2] [I] [thread 43] Nodo 1: Voto CONSENTITO per pacchetto con destinazione: 167772518 (timestamp-based)
+[14:09:42.560] [bmv2] [T] [thread 43] [3.0] [cxt 0] /ipv4.p4(166) Condition "meta.is_final == 0" (node_9) is false
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Pipeline 'ingress': end
+[14:09:42.560] [bmv2] [D] [thread 43] [3.0] [cxt 0] Egress port is 0
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Pipeline 'egress': start
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] /ipv4.p4(213) Condition "meta.is_final == 1" (node_28) is true
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] Applying table 'tbl_ipv4l219'
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Looking up key:
+
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Table 'tbl_ipv4l219': miss
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Action entry is ipv4l219 - 
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] Action ipv4l219
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] /ipv4.p4(220) Primitive hdr.consensus.allowed_count
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] /ipv4.p4(221) Primitive hdr.consensus.drop_count
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] /ipv4.p4(222) Primitive hdr.consensus.abstained_count
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] /ipv4.p4(219) Primitive             log_msg(\"Egress: Consenso finale (consentito={}, rifiutato={}, astenuto={})\", {
+[14:09:42.560] [bmv2] [I] [thread 44] Egress: Consenso finale (consentito=3, rifiutato=0, astenuto=1)
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] /ipv4.p4(225) Condition "allowed * 2 <= total" (node_30) is false
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] Applying table 'tbl_ipv4l228'
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Looking up key:
+
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Table 'tbl_ipv4l228': miss
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Action entry is ipv4l228 - 
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] Action ipv4l228
+[14:09:42.560] [bmv2] [T] [thread 44] [3.0] [cxt 0] /ipv4.p4(228) Primitive                 log_msg(\"Egress: Pacchetto INOLTRATO dal consenso\", {});
+[14:09:42.560] [bmv2] [I] [thread 44] Egress: Pacchetto INOLTRATO dal consenso
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Pipeline 'egress': end
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Deparser 'deparser': start
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Updating checksum 'cksum'
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Deparsing header 'ethernet'
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Deparsing header 'ipv4'
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Deparsing header 'tcp'
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Deparsing header 'consensus'
+[14:09:42.560] [bmv2] [D] [thread 44] [3.0] [cxt 0] Deparser 'deparser': end
+[14:09:42.560] [bmv2] [D] [thread 48] [3.0] [cxt 0] Transmitting packet of size 69 out of port 0
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Processing packet received on port 1
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser 'parser': start
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser 'parser' entering state 'start'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Extracting header 'ethernet'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser state 'start': key is 0800
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] Bytes parsed: 14
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser 'parser' entering state 'parse_ipv4'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Extracting header 'ipv4'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser state 'parse_ipv4': key is 06
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] Bytes parsed: 34
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser 'parser' entering state 'parse_tcp'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Extracting header 'tcp'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Extracting header 'consensus'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser state 'parse_tcp' has no switch, going to default next state
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] Bytes parsed: 57
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Parser 'parser': end
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Pipeline 'ingress': start
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] Applying table 'tbl_set_node_config'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Looking up key:
+
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Table 'tbl_set_node_config': miss
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Action entry is MyIngress.set_node_config - 
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] Action MyIngress.set_node_config
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(7) Primitive 1; ...
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(12) Primitive 1; ...
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(104) Primitive         log_msg(\"Nodo configurato con ruolo: {}\", {meta.switch_role});
+[14:10:31.708] [bmv2] [I] [thread 43] Nodo configurato con ruolo: 1
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(154) Condition "meta.switch_role == ROLE_LAYER2" (node_3) is true
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(159) Condition "rnd < 2" (node_4) is false
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(161) Condition "rnd == 2" (node_6) is true
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] Applying table 'tbl_vote_drop'
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Looking up key:
+
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Table 'tbl_vote_drop': miss
+[14:10:31.708] [bmv2] [D] [thread 43] [4.0] [cxt 0] Action entry is MyIngress.vote_drop - 
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] Action MyIngress.vote_drop
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(113) Primitive hdr.consensus.drop_count = hdr.consensus.drop_count + 1
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(114) Primitive         log_msg(\"Nodo {}: Voto RIFIUTATO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(114) Primitive         log_msg(\"Nodo {}: Voto RIFIUTATO per pacchetto con destinazione: {} (timestamp-based)\", {meta.switch_role, hdr.ipv4.dstAddr});
+[14:10:31.708] [bmv2] [T] [thread 43] [4.0] [cxt 0] /ipv4.p4(114) Primitive         log_msg(\"Nodo {}: Voto RIFIUTATO per pacchetto con destinazione: {} (timestamp-based)\", {meta.sw
