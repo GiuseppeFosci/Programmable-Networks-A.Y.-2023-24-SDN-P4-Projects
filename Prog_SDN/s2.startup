@@ -1,0 +1,31 @@
+# S2 STARTUP
+
+# Attiva tutte le interfacce fisiche
+ifconfig eth0 up   
+ifconfig eth1 up   
+ifconfig eth2 up   
+ifconfig eth3 up   
+
+# Assegna un IP di gestione all'interfaccia che comunica con il controller
+ip addr add 20.0.1.2/24 dev eth3  
+
+# Avvia Open vSwitch (OVS)
+service openvswitch-switch start
+sleep 1
+/usr/share/openvswitch/scripts/ovs-ctl --system-id=random start
+
+# Crea il bridge OpenFlow e aggiungi le porte
+ovs-vsctl add-br s2
+ovs-vsctl add-port s2 eth0
+ovs-vsctl add-port s2 eth1
+ovs-vsctl add-port s2 eth2
+
+# ✅ Assegna il DPID corretto a s2
+ovs-vsctl set bridge s2 other-config:datapath-id=0000000000000002
+
+# Attiva il bridge
+ip link set s2 up
+
+# Configura OpenFlow e collega il controller SDN
+ovs-vsctl set bridge s2 protocols=OpenFlow10
+ovs-vsctl set-controller s2 tcp:20.0.1.5:6633  

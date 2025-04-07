@@ -1,0 +1,17 @@
+# Attiva le interfacce di rete
+ifconfig eth0 up   # Verso Internet
+ifconfig eth1 up   # Verso S2 (SDN)
+
+# Assegna gli IP
+ip addr add 192.168.1.1/24 dev eth0  
+ip addr add 20.0.1.15/24 dev eth1    
+
+ip link set eth1 address 02:42:ac:11:00:15
+
+# Abilita il forwarding IP
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# Configura NAT per l'accesso a Internet
+#iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+#iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+#iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
