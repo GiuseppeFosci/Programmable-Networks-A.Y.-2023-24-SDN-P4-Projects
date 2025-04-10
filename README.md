@@ -43,4 +43,4 @@ Questo progetto implementa un meccanismo di **mobilità degli utenti** in una re
 
 1. Avvia katharà con (`kathara lstart`)
 2. Nel terminale del controller andare sulla direcory (`cd home/pox`) e avviare il controller con (`./pox.py controller`)
-3. Nel terminale di H1 avviare il programma python presente nella directory home (`python3 mobility`)
+3. Nel terminale di H1 avviare il programma python presente nella directory home quindi lanciare il comando (`python3 mobility.py`)
