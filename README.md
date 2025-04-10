@@ -23,3 +23,24 @@ Il voto viene accumulato lungo il percorso, per poi determinare una decisione fi
 
 
 
+# SDN Mobility Management Project
+
+Questo progetto implementa un meccanismo di **mobilità degli utenti** in una rete SDN, evitando il ricalcolo completo dei percorsi al gateway (con algoritmo Dijkstra) e minimizzando il numero di link modificati durante il cambio di access point.
+
+## Architettura
+
+- **Controller SDN (POX)**: gestisce la rete e coordina il cambiamento dei percorsi.
+- **Switch (OpenFlow)**: configurabili per instradare i pacchetti in base alle regole decise dal controller.
+- **Modulo `user_mobility`**: gestisce la logica del cambiamento di access point per ogni host.
+
+## File principali
+
+- `controller.py`: Si occupa di avviare tutti i moduli necessari.
+- `user_mobility.py`: modulo per la gestione della mobilità degli host.
+- `mobility.py`: Simula lo spostamento dell'host ogni 10 secondi viene attivata una interfaccia e disattivate tutte le altre.
+
+## Esecuzione
+
+1. Avvia katharà con (`kathara lstart`)
+2. Nel terminale del controller andare sulla direcory (`cd home/pox`) e avviare il controller con (`./pox.py controller`)
+3. Nel terminale di H1 avviare il programma python presente nella directory home (`python3 mobility`)
