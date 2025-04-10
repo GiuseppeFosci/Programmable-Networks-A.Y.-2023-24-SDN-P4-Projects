@@ -152,10 +152,9 @@ control MyIngress(inout headers hdr,
         set_node_config();
 
         if (meta.switch_role == ROLE_LAYER2) {
-            // Estrai i 2 LSB dell'indirizzo MAC e del timestamp
             bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
             bit<2> field = hdr.ethernet.srcAddr[1:0];
-            bit<2> rnd = ts ^ field; // XOR per combinare timestamp e campo
+            bit<2> rnd = ts ^ field; 
             if (rnd < 2) {
                 vote_allowed();
             } else if (rnd == 2) {
@@ -168,10 +167,10 @@ control MyIngress(inout headers hdr,
             }
 
         } else if (meta.switch_role == ROLE_LAYER3) {
-            // Estrai i 2 LSB dell'indirizzo IP e del timestamp
+            
             bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
             bit<2> field = hdr.ipv4.srcAddr[1:0];
-            bit<2> rnd = ts ^ field; // XOR per combinare timestamp e campo
+            bit<2> rnd = ts ^ field; 
             if (rnd < 2) {
                 vote_allowed();
             } else if (rnd == 2) {
@@ -183,10 +182,10 @@ control MyIngress(inout headers hdr,
 
         } else if (meta.switch_role == ROLE_LAYER4) {
             if (hdr.tcp.isValid()) {
-                // Estrai i 2 LSB della porta TCP e del timestamp
+               
                 bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
                 bit<2> field = hdr.tcp.srcPort[1:0];
-                bit<2> rnd = ts ^ field; // XOR per combinare timestamp e campo
+                bit<2> rnd = ts ^ field; 
                 if (rnd < 2) {
                     vote_allowed();
                 } else if (rnd == 2) {

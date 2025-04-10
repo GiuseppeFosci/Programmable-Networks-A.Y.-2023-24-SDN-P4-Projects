@@ -9,7 +9,7 @@ const bit<32> ROLE_LAYER3 = 2;
 const bit<32> ROLE_LAYER4 = 3;
 
 const bit<32> THIS_NODE_ROLE = ROLE_LAYER2;
-const bit<1>  THIS_NODE_IS_FINAL = 0;
+const bit<1>  THIS_NODE_IS_FINAL = 1;
 
 header ethernet_t {
     bit<48> dstAddr;
@@ -106,17 +106,17 @@ control MyIngress(inout headers hdr,
 
     action vote_allowed() {
         hdr.consensus.allowed_count = hdr.consensus.allowed_count + 1;
-        log_msg("Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {}", {meta.switch_role, hdr.ipv4.dstAddr});
+        log_msg("Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
     }
 
     action vote_drop() {
         hdr.consensus.drop_count = hdr.consensus.drop_count + 1;
-        log_msg("Nodo {}: Voto RIFIUTATO per pacchetto con destinazione: {}", {meta.switch_role, hdr.ipv4.dstAddr});
+        log_msg("Nodo {}: Voto RIFIUTATO per pacchetto con destinazione: {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
     }
 
     action vote_abstain() {
         hdr.consensus.abstained_count = hdr.consensus.abstained_count + 1;
-        log_msg("Nodo {}: Voto ASTENUTO per pacchetto con destinazione: {}", {meta.switch_role, hdr.ipv4.dstAddr});
+        log_msg("Nodo {}: Voto ASTENUTO per pacchetto con destinazione: {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
     }
 
     action drop() {
@@ -152,7 +152,9 @@ control MyIngress(inout headers hdr,
         set_node_config();
 
         if (meta.switch_role == ROLE_LAYER2) {
-            bit<2> rnd = hdr.ethernet.srcAddr[1:0];
+            bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
+            bit<2> field = hdr.ethernet.srcAddr[1:0];
+            bit<2> rnd = ts ^ field; 
             if (rnd < 2) {
                 vote_allowed();
             } else if (rnd == 2) {
@@ -165,7 +167,10 @@ control MyIngress(inout headers hdr,
             }
 
         } else if (meta.switch_role == ROLE_LAYER3) {
-            bit<2> rnd = hdr.ipv4.srcAddr[1:0];
+            
+            bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
+            bit<2> field = hdr.ipv4.srcAddr[1:0];
+            bit<2> rnd = ts ^ field; 
             if (rnd < 2) {
                 vote_allowed();
             } else if (rnd == 2) {
@@ -177,7 +182,10 @@ control MyIngress(inout headers hdr,
 
         } else if (meta.switch_role == ROLE_LAYER4) {
             if (hdr.tcp.isValid()) {
-                bit<2> rnd = hdr.tcp.srcPort[1:0];
+               
+                bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
+                bit<2> field = hdr.tcp.srcPort[1:0];
+                bit<2> rnd = ts ^ field; 
                 if (rnd < 2) {
                     vote_allowed();
                 } else if (rnd == 2) {

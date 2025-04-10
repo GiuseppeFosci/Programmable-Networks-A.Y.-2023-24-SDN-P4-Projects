@@ -7,7 +7,6 @@ from subprocess import Popen, PIPE
 from scapy.all import sendp, get_if_list, get_if_hwaddr
 from scapy.all import Ether, IP, TCP, Raw, Packet, ByteField
 
-# Custom Consensus header compatible with P4
 class Consensus(Packet):
     name = "Consensus"
     fields_desc = [
@@ -18,7 +17,7 @@ class Consensus(Packet):
 
 def get_if():
     ifs=get_if_list()
-    iface=None # "h1-eth0"
+    iface=None 
     for i in get_if_list():
         if "eth0" in i:
             iface=i
