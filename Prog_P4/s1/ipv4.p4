@@ -1,3 +1,4 @@
+
 #include <core.p4>
 #include <v1model.p4>
 
@@ -101,38 +102,38 @@ control MyIngress(inout headers hdr,
     action set_node_config() {
         meta.switch_role = THIS_NODE_ROLE;
         meta.is_final = THIS_NODE_IS_FINAL;
-        log_msg("Nodo configurato con ruolo: {}", {meta.switch_role});
+        log_msg("[INFO] Nodo configurato con ruolo: {}", {meta.switch_role});
     }
 
     action vote_allowed() {
         hdr.consensus.allowed_count = hdr.consensus.allowed_count + 1;
-        log_msg("Nodo {}: Voto CONSENTITO per pacchetto con destinazione: {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
+        log_msg("[INFO] Nodo {}: Voto CONSENTITO per pacchetto destinato a {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
     }
 
     action vote_drop() {
         hdr.consensus.drop_count = hdr.consensus.drop_count + 1;
-        log_msg("Nodo {}: Voto RIFIUTATO per pacchetto con destinazione: {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
+        log_msg("[INFO] Nodo {}: Voto RIFIUTATO per pacchetto destinato a {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
     }
 
     action vote_abstain() {
         hdr.consensus.abstained_count = hdr.consensus.abstained_count + 1;
-        log_msg("Nodo {}: Voto ASTENUTO per pacchetto con destinazione: {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
+        log_msg("[INFO] Nodo {}: Voto ASTENUTO per pacchetto destinato a {} (timestamp-based)", {meta.switch_role, hdr.ipv4.dstAddr});
     }
 
     action drop() {
         mark_to_drop(standard_metadata);
-        log_msg("Nodo {}: Pacchetto RIFIUTATO", {meta.switch_role});
+        log_msg("[INFO] Nodo {}: Pacchetto SCARTATO", {meta.switch_role});
     }
 
     action ipv4_forward(bit<9> outPort) {
         standard_metadata.egress_spec = outPort;
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
-        log_msg("Nodo {}: Pacchetto INOLTRATO alla porta {}", {meta.switch_role, outPort});
+        log_msg("[INFO] Nodo {}: Pacchetto INOLTRATO alla porta {}", {meta.switch_role, outPort});
     }
 
     action l2_forward(bit<9> outPort) {
         standard_metadata.egress_spec = outPort;
-        log_msg("Nodo {}: Inoltro L2 pacchetto alla porta {}", {meta.switch_role, outPort});
+        log_msg("[INFO] Nodo {}: Inoltro L2 del pacchetto alla porta {}", {meta.switch_role, outPort});
     }
 
     table CMH_forwarding_table {
@@ -152,10 +153,9 @@ control MyIngress(inout headers hdr,
         set_node_config();
 
         if (meta.switch_role == ROLE_LAYER2) {
-            // Estrai i 2 LSB dell'indirizzo MAC e del timestamp
             bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
             bit<2> field = hdr.ethernet.srcAddr[1:0];
-            bit<2> rnd = ts ^ field; // XOR per combinare timestamp e campo
+            bit<2> rnd = ts ^ field;
             if (rnd < 2) {
                 vote_allowed();
             } else if (rnd == 2) {
@@ -165,13 +165,14 @@ control MyIngress(inout headers hdr,
             }
             if (meta.is_final == 0) {
                 l2_forward(2);
+            } else {
+                log_msg("[INFO] Nodo finale (Layer2): decisione di inoltro delegata all'Egress", {});
             }
 
         } else if (meta.switch_role == ROLE_LAYER3) {
-            // Estrai i 2 LSB dell'indirizzo IP e del timestamp
             bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
             bit<2> field = hdr.ipv4.srcAddr[1:0];
-            bit<2> rnd = ts ^ field; // XOR per combinare timestamp e campo
+            bit<2> rnd = ts ^ field;
             if (rnd < 2) {
                 vote_allowed();
             } else if (rnd == 2) {
@@ -179,14 +180,18 @@ control MyIngress(inout headers hdr,
             } else {
                 vote_abstain();
             }
-            CMH_forwarding_table.apply();
+            if (meta.is_final == 0) {
+                CMH_forwarding_table.apply();
+            } else {
+                log_msg("[INFO] Nodo finale (Layer3): decisione di inoltro delegata all'Egress", {});
+            }
 
         } else if (meta.switch_role == ROLE_LAYER4) {
             if (hdr.tcp.isValid()) {
                 // Estrai i 2 LSB della porta TCP e del timestamp
                 bit<2> ts = standard_metadata.ingress_global_timestamp[1:0];
                 bit<2> field = hdr.tcp.srcPort[1:0];
-                bit<2> rnd = ts ^ field; // XOR per combinare timestamp e campo
+                bit<2> rnd = ts ^ field;
                 if (rnd < 2) {
                     vote_allowed();
                 } else if (rnd == 2) {
@@ -195,7 +200,11 @@ control MyIngress(inout headers hdr,
                     vote_abstain();
                 }
             }
-            CMH_forwarding_table.apply();
+            if (meta.is_final == 0) {
+                CMH_forwarding_table.apply();
+            } else {
+                log_msg("[INFO] Nodo finale (Layer4): decisione di inoltro delegata all'Egress", {});
+            }
         }
     }
 }
@@ -206,7 +215,26 @@ control MyEgress(inout headers hdr,
 
     action drop() {
         mark_to_drop(standard_metadata);
-        log_msg("Egress: Pacchetto RIFIUTATO dal consenso", {});
+        log_msg("[INFO] Egress: Pacchetto SCARTATO dal consenso", {});
+    }
+    
+    action ipv4_forward_egress(bit<9> outPort) {
+        standard_metadata.egress_spec = outPort;
+        hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
+        log_msg("[INFO] Egress: Pacchetto INOLTRATO alla porta {}", {outPort});
+    }
+
+    table CMH_forwarding_table {
+        key = {
+            hdr.ipv4.dstAddr: lpm;
+        }
+        actions = {
+            ipv4_forward_egress;
+            drop;
+            NoAction;
+        }
+        size = 1024;
+        default_action = NoAction();
     }
 
     apply {
@@ -216,16 +244,18 @@ control MyEgress(inout headers hdr,
                            hdr.consensus.drop_count +
                            hdr.consensus.abstained_count;
 
-            log_msg("Egress: Consenso finale (consentito={}, rifiutato={}, astenuto={})", {
+            log_msg("[INFO] Egress: Consenso finale (consentito={}, rifiutato={}, astenuto={})", {
                 hdr.consensus.allowed_count,
                 hdr.consensus.drop_count,
                 hdr.consensus.abstained_count
             });
 
-            if (allowed * 2 <= total) {
-                drop();
+            
+            if (allowed * 2 > total) {
+                log_msg("[INFO] Egress: Consenso POSITIVO, pacchetto INOLTRATO", {});
+                CMH_forwarding_table.apply();
             } else {
-                log_msg("Egress: Pacchetto INOLTRATO dal consenso", {});
+                drop();
             }
         }
     }
@@ -268,3 +298,4 @@ V1Switch(
     MyComputeChecksum(),
     MyDeparser()
 ) main;
+
