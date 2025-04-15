@@ -1,4 +1,4 @@
-## 1. SDN User Mobility con POX
+## 1. SDN User Mobility
 
 ### Descrizione
 Questo progetto implementa un meccanismo di mobilità per gli host in una rete SDN, evitando il ricalcolo completo del percorso ogni volta che un host cambia Access Point. L’obiettivo è aggiornare la rete in modo minimale, modificando solo i link necessari tra il vecchio e il nuovo percorso, a partire dal gateway.
