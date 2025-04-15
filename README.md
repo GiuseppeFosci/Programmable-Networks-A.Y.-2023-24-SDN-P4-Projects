@@ -14,11 +14,12 @@ Il controller gestisce i flussi e monitora la posizione degli host. Quando un ho
 
 ### Funzionalità principali
 - Calcolo iniziale dei percorsi con Dijkstra, idea è quella di calcolare la prima volta l'intero percorso usando Djkstra, e le volte successive usando Djkstra ma solo nel subgraph.
+- mobility.py simula lo spostamento dell'host h1 attivando e disattivando le interfacce ogni 10 secondi.
 
 ### Avvio
 - Nel terminale del controller eseguire `cd home/pox`
-- Per avviare il controller, esegui `./controller.py` nel terminale.
-- Nel terminale di H1 eseguire `cd home` e `moblity.py`
+- Per avviare il controller, esegui `./pox.py controller.py` nel terminale.
+- Nel terminale di H1 eseguire `cd home` e ` python3 moblity.py`
 
 ## 2. P4 Distributed Consensus
 
@@ -32,10 +33,7 @@ Simulare un sistema in cui ciascuno switch vota sull’azione da intraprendere p
 ### Avvio
 <<<<<<< HEAD
 
-- Nel terminale di H1 eseguire `cd home` e `send.py`
-=======
--Nel terminale di H1 eseguire `cd home` e `send.py`
->>>>>>> 8e0cf7e5cefa7f10518e0f403098c4f34382eadb
+- Nel terminale di H1 eseguire `cd home` e ` python3 send.py`
 
 ### Opinioni ammesse
 - `1`: Permettere il transito del pacchetto
@@ -45,6 +43,7 @@ Simulare un sistema in cui ciascuno switch vota sull’azione da intraprendere p
 ### Funzionamento
 
 - Ogni switch legge i campi del pacchetto e scrive la propria opinione.
+- Con send.py viene inviato un pacchetto che ha anche header per il consenso.
 - Il pacchetto trasporta le opinioni lungo il percorso.
 - Alla fine, lo switch finale applica una logica di consenso basata sulle opinioni ricevute.
 
