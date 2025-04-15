@@ -14,7 +14,8 @@ Il controller gestisce i flussi e monitora la posizione degli host. Quando un ho
 
 ### Funzionalità principali
 - Calcolo iniziale dei percorsi con Dijkstra, idea è quella di calcolare la prima volta l'intero percorso usando Djkstra, e le volte successive usando Djkstra ma solo nel subgraph.
-###Avvio
+
+### Avvio
 - Nel terminale del controller eseguire `cd home/pox`
 - Per avviare il controller, esegui `./controller.py` nel terminale.
 - Nel terminale di H1 eseguire `cd home` e `moblity.py`
@@ -28,7 +29,7 @@ Alla fine il nodo di uscita decide se inoltrare o scartare il pacchetto in base 
 ### Obiettivo
 Simulare un sistema in cui ciascuno switch vota sull’azione da intraprendere per un pacchetto. L’ultimo nodo del percorso aggrega le opinioni e prende la decisione finale.
 
-###Avvio
+### Avvio
 
 - Nel terminale di H1 eseguire `cd home` e `send.py`
 
