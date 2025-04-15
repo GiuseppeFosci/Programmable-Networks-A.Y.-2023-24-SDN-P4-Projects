@@ -6,6 +6,8 @@ pip3 install --force-reinstall --break-system-packages networkx
 
 
 chmod +x /home/pox/pox.py
+cd home/pox
+
 
 
 

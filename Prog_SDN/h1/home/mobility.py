@@ -3,15 +3,10 @@ import time
 from scapy.all import sr1, send, IP, ICMP, conf, arping
 
 TARGET_IP = "20.0.1.15"
-HOST_IP_CIDR = "20.0.1.10/24"  # IP con CIDR
+HOST_IP_CIDR = "20.0.1.10/24"  
 INTERFACES = ["eth0", "eth1", "eth2", "eth3"]
 
 def set_active_interface(active_intf):
-    """
-    Attivo solo l'interfaccia specificata e disattiva le altre.
-    Esegue il flush degli indirizzi, assegna HOST_IP_CIDR, aggiorna la default route
-    e forza Scapy ad usare questa interfaccia.
-    """
     for intf in INTERFACES:
         if intf == active_intf:
             os.system(f"ifconfig {intf} up")
@@ -27,12 +22,9 @@ def set_active_interface(active_intf):
 
 
 def send_icmp_ping_no_reply(target_ip):
-    """
-    Invio un pacchetto ICMP Echo Request senza attendere una risposta.
-    """
     pkt = IP(dst=target_ip)/ICMP()
     send(pkt, iface=conf.iface, verbose=False)
-    print(f"Inviato ICMP Echo Request a {target_ip} tramite {conf.iface} (senza attesa risposta)")
+    print(f"Inviato ICMP Echo Request a {target_ip} tramite {conf.iface}")
 
 def main():
     while True:
