@@ -31,7 +31,6 @@ Alla fine il nodo di uscita decide se inoltrare o scartare il pacchetto in base 
 Simulare un sistema in cui ciascuno switch vota sull’azione da intraprendere per un pacchetto. L’ultimo nodo del percorso aggrega le opinioni e prende la decisione finale.
 
 ### Avvio
-<<<<<<< HEAD
 
 - Nel terminale di H1 eseguire `cd home` e ` python3 send.py`
 
